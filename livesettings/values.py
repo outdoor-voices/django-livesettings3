@@ -961,7 +961,10 @@ class ModuleValue(Value):
         """Load a child module"""
         value = self._value()
         if value == NOTSET:
-            raise SettingNotSet(f"{self.group.key}.{self.key}")
+            raise SettingNotSet("{}.{}".format(
+                self.group.key,
+                self.key,
+            ))
         else:
             return load_module("%s.%s" % (value, module))
 
