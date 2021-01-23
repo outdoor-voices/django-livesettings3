@@ -146,7 +146,11 @@ class Setting(models.Model, CachedObjectMixin):
         return self.id is not None
 
     def __str__(self):
-        return f'{self.group}.{self.key} = {self.value}'
+        return "{}.{} = {}".format(
+            self.group,
+            self.key,
+            self.value,
+        )
 
     def cache_key(self, *args, **kwargs):
         return cache_key('Setting', self.site, self.group, self.key)
@@ -197,7 +201,11 @@ class LongSetting(models.Model, CachedObjectMixin):
         return self.id is not None
 
     def __str__(self):
-        return f'{self.group}.{self.key} = {self.value}'
+        return "{}.{} = {}".format(
+            self.group,
+            self.key,
+            self.value,
+        )
 
     def cache_key(self, *args, **kwargs):
         # note same cache pattern as Setting.  This is so we can look up in one check.
