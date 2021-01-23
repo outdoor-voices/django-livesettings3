@@ -54,7 +54,10 @@ def group_settings(request, group, template='livesettings/group_settings.html'):
                             messages.add_message(request, messages.INFO,
                                                  'Updated %s on %s' % (cfg.key, cfg.group.key))
                     except Exception as e:
-                        log.exception(f'failed to save setting {name}:={value}')
+                        log.exception("failed to save setting {}:={}".format(
+                            name,
+                            value,
+                        ))
                         request.user.message_set.create(message=str(e))
 
                 return HttpResponseRedirect(request.path)
